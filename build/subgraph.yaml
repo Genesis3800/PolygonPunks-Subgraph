@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: PolygonPunksMarket
@@ -18,10 +18,10 @@ dataSources:
         - PunkTransfer
       abis:
         - name: PolygonPunksMarket
-          file: ./abis/PolygonPunksMarket.json
+          file: PolygonPunksMarket/abis/PolygonPunksMarket.json
       eventHandlers:
         - event: Assign(indexed address,uint256)
           handler: handleAssign
         - event: PunkTransfer(indexed address,indexed address,uint256)
           handler: handlePunkTransfer
-      file: ./src/polygon-punks-market.ts
+      file: PolygonPunksMarket/PolygonPunksMarket.wasm
