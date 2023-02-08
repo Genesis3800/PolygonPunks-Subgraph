@@ -1,4 +1,4 @@
-# Polygon Pit Workshop
+# Chainstack x Polygon Pit Workshop
 
 This workshop will take you through building, deploying and querying a subgraph for the [Polygon Punks smart contract](https://polygonscan.com/address/0x9498274B8C82B4a3127D67839F2127F2Ae9753f4 "Polygon Punks smart contract").
 
