@@ -63,4 +63,7 @@ type PunkTransfer @entity(immutable: true) {
 }
 ```
 
-The `Punk` entity will store some important data for each Punk NFT. Each entity has to have an `id` field to uniquely identify each instance of that entity. We 
+The `Punk` entity will store some important data for each Punk NFT. Each entity has to have an `id` field to uniquely identify each instance of that entity. The `PunkTransfer` entity will store the entire transfer history of the Plygon Punks smart contract.
+You will notice that we set the immutable flag to true for the second entity.
+Entities by default are mutable in The Graph. Mutable entities can be updated multiple times. We let `Punk` remain mutable because the `currentOwner` could change many times.
+Since each instance of the `PunkTransfer` entity will be definitively unique, we can mark it as immutable.
