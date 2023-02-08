@@ -200,3 +200,8 @@ npm start
 ```
 This will initialize a basic frontend in your browser.
 All of your Chainstack Subgraphs will expose a GraphQL endpoint for remotely querying the subgraph for data. To use the endpoint from your DAPP, you need a frontend GraphQL client like [URQL](https://formidable.com/open-source/urql/docs/ "URQL").
+
+Through the frontend, you can fetch data for a specific tokenID at the click of a button. 
+The `Fetch Punks` button will allow you to query the subgraph for the `Punk` entity with a specific token ID. This way you can quickly check out the details of a specific punk.
+
+Similarly, the `Fetch Punk Transfers` button will fetch the entire transaction history of a particular punk by querying for all instances of the `PunkTransfers` entity with a specific token ID. 
