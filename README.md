@@ -164,3 +164,19 @@ export function handlePunkTransfer(event: PunkTransferEvent): void {
 }
 ```
 We simply create new instances of `Punk` and `PunkTransfer` entities every time their corresponding events are emitted. After handling all the data emitted in the logs, we save the entities to the local data store using the `.save()` method.
+
+## Deploying the Subgraph
+
+To deploy the subgraph to Chainstack Subgraphs:
+
+1. Go to [Chainstack](https://console.chainstack.com/subgraphs "Chainstack") and create a new subgraph project.
+
+2. Copy the deployment command from your Chainstack Subgraphs console.
+
+3. In your terminal, run the follosing command to compile your subgraph:
+
+```bash
+graph build
+```
+
+4. Finally, paste the deployment command and exectue it from within your terminal. 
