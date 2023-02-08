@@ -110,3 +110,57 @@ graph codegen
 ```
 
 You should run this command everytime you make changes to the schema or yaml file. The Graph will now generate some AssemblyScript types to help us in writing the subgraph mappings.
+
+## Writing mappings
+
+You will notice that we defined two `event-handler` pairs in our yaml file, under the `eventHandlers` object.
+These events come from the smart contract we are indexing, and whenever that event is emitted from the contract, The Graph runs the corresponding function from our mappings file.
+
+For this Subgraph, we will define the two functions we declared in the yaml file.
+Go to `src/polygon-punks-market.ts`, and delete everything inside the file. Now paste the following code inside it:
+
+```javascript
+import {
+  Assign as AssignEvent,
+  PunkTransfer as PunkTransferEvent,
+  Transfer as TransferEvent,
+  PolygonPunksMarket as PolygonPunks
+
+} from "../generated/PolygonPunksMarket/PolygonPunksMarket"
+import {
+  Punk,
+  PunkTransfer,
+} from "../generated/schema"
+
+
+export function handleAssign(event: AssignEvent): void {
+  let punk = new Punk(
+    event.params.punkIndex.toString()
+  )
+  let ContractAddress = PolygonPunks.bind(event.address);
+  let newOwnerFromContract = ContractAddress.ownerOf(event.params.punkIndex);
+
+  punk.originalOwner = event.params.to
+  punk.currentOwner = newOwnerFromContract
+  punk.blockNumber = event.block.number
+  punk.transactionHash = event.transaction.hash
+
+  punk.save()
+}
+
+
+export function handlePunkTransfer(event: PunkTransferEvent): void {
+  let transfer = new PunkTransfer(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  transfer.tokenId = event.params.punkIndex
+  transfer.oldOwner = event.params.from
+  transfer.newOwner = event.params.to
+
+  transfer.blockNumber = event.block.number
+  transfer.transactionHash = event.transaction.hash
+
+  transfer.save()
+}
+```
+We simply create new instances of `Punk` and `PunkTransfer` entities every time their corresponding events are emitted. After handling all the data emitted in the logs, we save the entities to the local data store using the `.save()` method.
