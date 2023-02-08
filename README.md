@@ -4,7 +4,7 @@ This workshop will take you through building, deploying and querying a subgraph 
 
 To get started through this repository, simply clone it with:
 
-```json
+```javascript
 git clone https://github.com/Genesis3800/PolygonPunks-Subgraph.git
 ```
 Move your terminal into the new directory, and run:
