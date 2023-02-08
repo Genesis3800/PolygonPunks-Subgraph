@@ -1,6 +1,6 @@
 # Chainstack x Polygon Pit Workshop
 
-This workshop will take you through building, deploying and querying a subgraph for the [Polygon Punks smart contract](https://polygonscan.com/address/0x9498274B8C82B4a3127D67839F2127F2Ae9753f4 "Polygon Punks smart contract").
+This workshop will take you through the building, deploying, and querying of a subgraph for the [Polygon Punks smart contract](https://polygonscan.com/address/0x9498274B8C82B4a3127D67839F2127F2Ae9753f4 "Polygon Punks smart contract").
 
 To get started through this repository, simply clone it with:
 
@@ -173,13 +173,13 @@ To deploy the subgraph to Chainstack Subgraphs:
 
 2. Copy the deployment command from your Chainstack Subgraphs console.
 
-3. In your terminal, run the follosing command to compile your subgraph:
+3. In your terminal, run the following command to compile your subgraph:
 
 ```bash
 graph build
 ```
 
-4. Finally, paste the deployment command and exectue it from within your terminal. 
+4. Finally, paste the deployment command and execute it from within your terminal. 
 
 ## Query your Chainstack Subgraph with ReactJS
 
