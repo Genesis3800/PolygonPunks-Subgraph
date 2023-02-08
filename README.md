@@ -67,3 +67,46 @@ The `Punk` entity will store some important data for each Punk NFT. Each entity 
 You will notice that we set the immutable flag to true for the second entity.
 Entities by default are mutable in The Graph. Mutable entities can be updated multiple times. We let `Punk` remain mutable because the `currentOwner` could change many times.
 Since each instance of the `PunkTransfer` entity will be definitively unique, we can mark it as immutable.
+
+## Configuring subgraph.yaml
+
+Every subgraph project needs a yaml file that basically contains the metadata for that subgraph. This yaml file points the graph-cli to the data sources that the subgraph will index, and the handler functions that need to be triggered whenever a particular event is emitted. This file is crucial and needs to be handled carefully. 
+Delete everything inside `subgraph.yaml`  and paste the following code inside it:
+
+```yaml
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PolygonPunksMarket
+    network: matic
+    source:
+      address: "0x9498274B8C82B4a3127D67839F2127F2Ae9753f4"
+      abi: PolygonPunksMarket
+      startBlock: 16367421
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Punk
+        - PunkTransfer
+      abis:
+        - name: PolygonPunksMarket
+          file: ./abis/PolygonPunksMarket.json
+      eventHandlers:
+        - event: Assign(indexed address,uint256)
+          handler: handleAssign
+        - event: PunkTransfer(indexed address,indexed address,uint256)
+          handler: handlePunkTransfer
+      file: ./src/polygon-punks-market.ts
+```
+
+Open your terminal, at the root of the subgraph project, and run:
+
+```bash
+graph codegen
+```
+
+You should run this command everytime you make changes to the schema or yaml file. The Graph will now generate some AssemblyScript types to help us in writing the subgraph mappings.
