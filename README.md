@@ -180,3 +180,23 @@ graph build
 ```
 
 4. Finally, paste the deployment command and exectue it from within your terminal. 
+
+## Query your Chainstack Subgraph with ReactJS
+
+Move your terminal one directory above the Subgraph project. Now run:
+
+```bash
+git clone https://github.com/Genesis3800/Chainstack-s-Polygon-Pit-Workhop.git
+```
+This command will clone a basic React JS project into your project. Go inside the React directory, and run:
+
+```bash
+npm install
+```
+To open a development server in your browser, run:
+
+```bash
+npm start
+```
+This will initialize a basic frontend in your browser.
+All of your Chainstack Subgraphs will expose a GraphQL endpoint for remotely querying the subgraph for data. To use the endpoint from your DAPP, you need a frontend GraphQL client like [URQL](https://formidable.com/open-source/urql/docs/ "URQL").
