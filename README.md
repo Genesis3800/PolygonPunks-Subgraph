@@ -41,3 +41,26 @@ With the `Index contract events as entities` flag set as true, The Graph will tr
 ## Defining entities
 
 All data in a Subgraph is stored using entities. Think of them as something like a Javascript object that can contain many different data types.
+
+Delete everything inside `schema.graphql`, and paste the following code inside it:
+
+```bash
+type Punk @entity {
+  id: ID!
+  originalOwner: Bytes!
+  currentOwner:  Bytes!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type PunkTransfer @entity(immutable: true) {
+  id: Bytes!
+  tokenId: BigInt!
+  oldOwner: Bytes!
+  newOwner: Bytes!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+```
+
+The `Punk` entity will store some important data for each Punk NFT. Each entity has to have an `id` field to uniquely identify each instance of that entity. We 
